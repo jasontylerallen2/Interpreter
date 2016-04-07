@@ -69,7 +69,6 @@ namespace Interpreter
                 if ( this.keyword.tok().Equals("wr") )
                 {
                     double d = this.expr.eval(env);
-                    //Console.WriteLine( d );
                     env.addOutput(d);
                     return d;
                 }

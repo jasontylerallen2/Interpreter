@@ -40,11 +40,11 @@ namespace Interpreter
             return output;
         }
 
-	    /**
-	     * Place a variable and a value in the table for storing
-	     * 
-	     * @return the value of the variable
-	     */
+        /**
+         * Place a variable and a value in the table for storing
+         * 
+         * @return the value of the variable
+         */
         public double put(String var, double val)
         {
             if (table.ContainsKey(var))
@@ -57,13 +57,13 @@ namespace Interpreter
             }
             return val;
         }
-    
-	    /**
-	     * @return a value given a position and variable name from the dictionary
-	     */
+
+        /**
+         * @return a value given a position and variable name from the dictionary
+         */
         public double get(int pos, String var)
         {
-            return table[var]; 
+            return table[var];
         }
 
     }
