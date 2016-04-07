@@ -1,0 +1,3 @@
+# cannot use just .11, must use 0.11 for valid syntax according to my grammar
+k = (3.7 + 0.11) - (2.8/2 * 2.2) + 0.8;
+wr k

@@ -1,0 +1,8 @@
+i = 5;
+j = i - 2;
+
+min = 1000;
+
+if i < j then min = i else min = j ;
+
+wr min

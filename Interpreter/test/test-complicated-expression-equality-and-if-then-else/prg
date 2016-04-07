@@ -1,0 +1,4 @@
+if (2 + (1/4)) == (2 + 0.5 - 0.25) then wr 1.0 else wr 0.0;
+if (-7 - 3) == -10 then wr 1.0 else wr 0.0;
+if (2 + (1/4)) == (2 + 0.5 + 0.25) then wr 1.0 else wr 0.0;
+if (-7 - 3) == 10 then wr 1.0 else wr 0.0

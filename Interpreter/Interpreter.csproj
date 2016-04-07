@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB708973-3AA9-44CA-B2F2-BE892EB8D277}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Interpreter</RootNamespace>
+    <AssemblyName>Interpreter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NodeFactId.cs" />
+    <Compile Include="EvalEnvironment.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="NodeAddop.cs" />
+    <Compile Include="NodeAssn.cs" />
+    <Compile Include="NodeBlock.cs" />
+    <Compile Include="NodeBoolExpr.cs" />
+    <Compile Include="NodeExpr.cs" />
+    <Compile Include="NodeFact.cs" />
+    <Compile Include="NodeFactDbl.cs" />
+    <Compile Include="NodeFactExpr.cs" />
+    <Compile Include="NodeMulop.cs" />
+    <Compile Include="NodeNegFact.cs" />
+    <Compile Include="NodeProg.cs" />
+    <Compile Include="NodeRelOp.cs" />
+    <Compile Include="NodeStmt.cs" />
+    <Compile Include="NodeTerm.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scanner.cs" />
+    <Compile Include="Token.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="test\test-assign-and-write-in-while-with-begin-end\exp" />
+    <None Include="test\test-assign-and-write-in-while-with-begin-end\prg" />
+    <None Include="test\test-begin-end\exp" />
+    <None Include="test\test-begin-end\prg" />
+    <None Include="test\test-boolexpr\exp" />
+    <None Include="test\test-boolexpr\prg" />
+    <None Include="test\test-comments-and-unary-minus-still-work\exp" />
+    <None Include="test\test-comments-and-unary-minus-still-work\prg" />
+    <None Include="test\test-comments-and-whitespace\exp" />
+    <None Include="test\test-comments-and-whitespace\prg" />
+    <None Include="test\test-comments-doubles-and-unary-minus\exp" />
+    <None Include="test\test-comments-doubles-and-unary-minus\prg" />
+    <None Include="test\test-complicated-expression-equality-and-if-then-else\exp" />
+    <None Include="test\test-complicated-expression-equality-and-if-then-else\prg" />
+    <None Include="test\test-crazy-comments\exp" />
+    <None Include="test\test-crazy-comments\prg" />
+    <None Include="test\test-crazy-doubles\exp" />
+    <None Include="test\test-crazy-doubles\prg" />
+    <None Include="test\test-double-add-subtract\exp" />
+    <None Include="test\test-double-add-subtract\prg" />
+    <None Include="test\test-double-arithmetic\exp" />
+    <None Include="test\test-double-arithmetic\prg" />
+    <None Include="test\test-double-multiply-divide\exp" />
+    <None Include="test\test-double-multiply-divide\prg" />
+    <None Include="test\test-equality-op\exp" />
+    <None Include="test\test-equality-op\prg" />
+    <None Include="test\test-every-operation\exp" />
+    <None Include="test\test-every-operation\prg" />
+    <None Include="test\test-greater-than-equal-op\exp" />
+    <None Include="test\test-greater-than-equal-op\prg" />
+    <None Include="test\test-greater-than-op\exp" />
+    <None Include="test\test-greater-than-op\prg" />
+    <None Include="test\test-if-then-else\exp" />
+    <None Include="test\test-if-then-else\prg" />
+    <None Include="test\test-if-then-with-begin-end\exp" />
+    <None Include="test\test-if-then-with-begin-end\prg" />
+    <None Include="test\test-if-then-with-inner-while\exp" />
+    <None Include="test\test-if-then-with-inner-while\prg" />
+    <None Include="test\test-if-then\exp" />
+    <None Include="test\test-if-then\prg" />
+    <None Include="test\test-less-than-equal-op\exp" />
+    <None Include="test\test-less-than-equal-op\prg" />
+    <None Include="test\test-less-than-op\exp" />
+    <None Include="test\test-less-than-op\prg" />
+    <None Include="test\test-notequal-op\exp" />
+    <None Include="test\test-notequal-op\prg" />
+    <None Include="test\test-triple-unary-minus\exp" />
+    <None Include="test\test-triple-unary-minus\prg" />
+    <None Include="test\test-unary-minus-assignment\exp" />
+    <None Include="test\test-unary-minus-assignment\prg" />
+    <None Include="test\test-unary-minus-outside-large-expression\exp" />
+    <None Include="test\test-unary-minus-outside-large-expression\prg" />
+    <None Include="test\test-variables-stored\exp" />
+    <None Include="test\test-variables-stored\prg" />
+    <None Include="test\test-while-with-begin-end\exp" />
+    <None Include="test\test-while-with-begin-end\prg" />
+    <None Include="test\test-while-with-inner-begin-end-and-if-then-else\exp" />
+    <None Include="test\test-while-with-inner-begin-end-and-if-then-else\prg" />
+    <None Include="test\test-while\exp" />
+    <None Include="test\test-while\prg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Grammar.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

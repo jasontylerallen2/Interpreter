@@ -1,0 +1,16 @@
+i = 3;
+j = 5;
+
+if i < j then begin min = i; max = j end else begin min = j ; max = i end ;
+
+wr min ;
+wr max ;
+
+
+i = 5;
+j = 3;
+
+if i < j then begin min = i; max = j end else begin min = j ; max = i end ;
+
+wr min ;
+wr max

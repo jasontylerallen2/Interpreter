@@ -1,0 +1,5 @@
+i = 5;
+j = 7;
+
+if i > j then wr 1.0 else wr 0.0;
+if j > i then wr 1.0 else wr 0.0

@@ -1,0 +1,3 @@
+i = 5 ;
+j = 5 + 2 ;
+if j > i then wr j

@@ -1,0 +1,4 @@
+i = 10;
+j = 0;
+
+while i > 5 do begin i = i - 1; j = i; wr j end

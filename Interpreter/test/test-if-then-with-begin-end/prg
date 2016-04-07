@@ -1,0 +1,12 @@
+i = 3;
+j = 5;
+
+a = -1;
+b = -1;
+c = -1;
+
+if i < j then begin a = 1; b = 1; c = 1 end;
+
+wr a;
+wr b;
+wr c

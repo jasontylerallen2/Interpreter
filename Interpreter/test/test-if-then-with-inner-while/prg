@@ -1,0 +1,5 @@
+i = -2;
+j = 8;
+
+if i < j then while i < j do i = i + 1;
+wr i
