@@ -37,7 +37,7 @@ namespace Interpreter
          * 
          * @return a double adding or subtracting two doubles
          */
-        public double op(double o1, double o2)
+        public double Op(double o1, double o2)
         {
             if (addop.Equals("+"))
             {

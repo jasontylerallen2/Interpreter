@@ -36,7 +36,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void fill(HashSet<String> s, char lo, char hi)
+        private void Fill(HashSet<String> s, char lo, char hi)
         {
             for (char c = lo; c <= hi; c++)
             {
@@ -49,7 +49,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initWhitespace(HashSet<String> s)
+        private void InitWhitespace(HashSet<String> s)
         {
             s.Add(" ");
             s.Add("\n");
@@ -61,9 +61,9 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initDigits(HashSet<String> s)
+        private void InitDigits(HashSet<String> s)
         {
-            fill(s, '0', '9');
+            Fill(s, '0', '9');
         }
 
         /**
@@ -71,10 +71,10 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initLetters(HashSet<String> s)
+        private void InitLetters(HashSet<String> s)
         {
-            fill(s, 'A', 'Z');
-            fill(s, 'a', 'z');
+            Fill(s, 'A', 'Z');
+            Fill(s, 'a', 'z');
         }
 
         /**
@@ -82,7 +82,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initLegits(HashSet<String> s)
+        private void InitLegits(HashSet<String> s)
         {
             foreach (String l in letters)
             {
@@ -99,7 +99,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initOperators(HashSet<String> s)
+        private void InitOperators(HashSet<String> s)
         {
             s.Add("=");
             s.Add("+");
@@ -122,7 +122,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initKeywords(HashSet<String> s)
+        private void InitKeywords(HashSet<String> s)
         {
             s.Add("wr");
             s.Add("if");
@@ -139,7 +139,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void initComments(HashSet<String> s)
+        private void InitComments(HashSet<String> s)
         {
             s.Add("#");
         }
@@ -154,19 +154,19 @@ namespace Interpreter
             this.program = program;
             position = 0;
             token = null;
-            initWhitespace(whitespace);
-            initDigits(digits);
-            initLetters(letters);
-            initLegits(legits);
-            initKeywords(keywords);
-            initOperators(operators);
-            initComments(comments);
+            InitWhitespace(whitespace);
+            InitDigits(digits);
+            InitLetters(letters);
+            InitLegits(legits);
+            InitKeywords(keywords);
+            InitOperators(operators);
+            InitComments(comments);
         }
 
         /**
          * @return a boolean indicating if we are "done" scanning the program
          */
-        public Boolean done()
+        public Boolean Done()
         {
             return position >= program.Length;
         }
@@ -176,9 +176,9 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void many(HashSet<String> s)
+        private void Many(HashSet<String> s)
         {
-            while (!done() && s.Contains(program[position] + ""))
+            while (!Done() && s.Contains(program[position] + ""))
             {
                 position++;
             }
@@ -191,16 +191,16 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void nextDbl()
+        private void NextDbl()
         {
             int old = position;
-            many(digits);
+            Many(digits);
 
             // handle double values
             if (program[position] == '.') 
             {
         	    position++;
-                many(digits);
+                Many(digits);
             }
             token = new Token("dbl", program.Substring(old, position - old));
         }
@@ -211,11 +211,11 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void nextKwId()
+        private void NextKwId()
         {
             int old = position;
-            many(letters);
-            many(legits);
+            Many(letters);
+            Many(legits);
             String lexeme = program.Substring(old, position - old);
             token = new Token((keywords.Contains(lexeme) ? lexeme : "id"), lexeme);
         }
@@ -226,14 +226,14 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void nextOp()
+        private void NextOp()
         {
             int old = position;
             position = old + 2;
             // We could have to be able to have 2 character long operators
             // such as "<="; this will attempt to match a 2 character
             // operator first, and then attempt to match a 1 character operator
-            if (!done())
+            if (!Done())
             {
                 String lexeme = program.Substring(old, 2);
                 if (operators.Contains(lexeme))
@@ -252,13 +252,13 @@ namespace Interpreter
          * 
          * @return void
          */
-        private void nextComment()
+        private void NextComment()
         {
-            while (!done() && program[position] != '\n')
+            while (!Done() && program[position] != '\n')
             {
                 position++;
             }
-            next();
+            Next();
         }
 
         /**
@@ -272,35 +272,35 @@ namespace Interpreter
          * 
          * @return a boolean indicating if the program is done
          */
-        public Boolean next()
+        public Boolean Next()
         {
-            if (done())
+            if (Done())
             {
                 return false;
             }
-            many(whitespace);
+            Many(whitespace);
             String c = program[position] + "";
             if (digits.Contains(c))
             {
-                nextDbl();
+                NextDbl();
             }
             else if (letters.Contains(c))
             {
-                nextKwId();
+                NextKwId();
             }
             else if (operators.Contains(c))
             {
-                nextOp();
+                NextOp();
             }
             else if (comments.Contains(c))
             {
-                 nextComment();
+                 NextComment();
             }
             else
             {
                 Console.Error.WriteLine("illegal character at position " + position);
                 position++;
-                return next();
+                return Next();
             }
             return true;
         }
@@ -312,24 +312,24 @@ namespace Interpreter
          * 
          * @return void
          */
-        public void match(Token t)
+        public void Match(Token t)
         {
-            if (!t.equals(curr()))
+            if (!t.Equals(Curr()))
             {
-                throw new Exception("Unexpected character: " + curr().lex() + " at position " + pos() + ". Expected " + t.lex());
+                throw new Exception("Unexpected character: " + Curr().Lex() + " at position " + Pos() + ". Expected " + t.Lex());
             }
-            next();
+            Next();
         }
 
         /**
          * @return the current token
          */
-        public Token curr() { return token; }
+        public Token Curr() { return token; }
 
         /**
          * @return the current position
          */
-        public int pos() { return position; }
+        public int Pos() { return position; }
 
     }
 }

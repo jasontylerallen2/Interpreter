@@ -38,9 +38,9 @@ namespace Interpreter
          * evaluation of the NodeFact using the NodeFacts eval() method;
          * depending on the value of isNegative
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            return this.isNegative ? -nodefact.eval(env) : nodefact.eval(env) ;
+            return this.isNegative ? -nodefact.Eval(env) : nodefact.Eval(env) ;
         }
     }
 

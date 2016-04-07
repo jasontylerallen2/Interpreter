@@ -37,7 +37,7 @@ namespace Interpreter
          * 
          * @return a double from multiplying or dividing two doubles
          */
-        public double op(double o1, double o2) 
+        public double Op(double o1, double o2) 
         {
             if (mulop.Equals("*"))
                 return o1 * o2;

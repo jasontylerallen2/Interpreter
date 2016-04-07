@@ -34,9 +34,9 @@ namespace Interpreter
          * @returns a double value from evaluating the fact, done
          * simply using the environment's get() method
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            return env.get(pos, id);
+            return env.Get(pos, id);
         }
 
     }

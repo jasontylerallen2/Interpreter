@@ -25,7 +25,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        public void addOutput(Double d)
+        public void AddOutput(Double d)
         {
             output.Add(d);
         }
@@ -35,7 +35,7 @@ namespace Interpreter
          * 
          * @return the output of the program
          */
-        public List<Double> getOutput()
+        public List<Double> GetOutput()
         {
             return output;
         }
@@ -45,7 +45,7 @@ namespace Interpreter
          * 
          * @return the value of the variable
          */
-        public double put(String var, double val)
+        public double Put(String var, double val)
         {
             if (table.ContainsKey(var))
             {
@@ -61,7 +61,7 @@ namespace Interpreter
         /**
          * @return a value given a position and variable name from the dictionary
          */
-        public double get(int pos, String var)
+        public double Get(int pos, String var)
         {
             return table[var];
         }

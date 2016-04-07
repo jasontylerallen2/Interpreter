@@ -46,7 +46,7 @@ namespace Interpreter
          *
          * @return void
          */
-        public void append(NodeTerm term)
+        public void Append(NodeTerm term)
         {
             if (this.term == null)
             {
@@ -55,7 +55,7 @@ namespace Interpreter
                 term.mulop=null;
             }
             else
-                this.term.append(term);
+                this.term.Append(term);
         }
 
         /**
@@ -63,11 +63,11 @@ namespace Interpreter
          * the eval() of a negfact, or if there is a term and a corresponding
          * mulop, the eval of the term * or / the eval of the negfact
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
             return term==null
-                ? negfact.eval(env)
-                : mulop.op(term.eval(env), negfact.eval(env));
+                ? negfact.Eval(env)
+                : mulop.Op(term.Eval(env), negfact.Eval(env));
         }
 
     }

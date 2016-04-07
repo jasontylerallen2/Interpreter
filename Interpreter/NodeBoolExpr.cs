@@ -36,9 +36,9 @@ namespace Interpreter
         /**
          * @return 1.0 if true and 0.0 if false
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            return relOp.op(expr1.eval(env), expr2.eval(env));
+            return relOp.Op(expr1.Eval(env), expr2.Eval(env));
         }
 
     }

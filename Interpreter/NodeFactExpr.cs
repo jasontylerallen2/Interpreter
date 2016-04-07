@@ -35,9 +35,9 @@ namespace Interpreter
          * using the NodeExpr classes eval method already
          * established
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            return expr.eval(env);
+            return expr.Eval(env);
         }
 
     }

@@ -37,7 +37,7 @@ namespace Interpreter
          * 
          * @return 0.0 if false and 1.0 if true
          */
-        public double op(double o1, double o2)
+        public double Op(double o1, double o2)
         {
             Boolean ret;
             if (relOp.Equals("<"))

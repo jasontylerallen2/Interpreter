@@ -46,7 +46,7 @@ namespace Interpreter
          * 
          * @return void
          */
-        public void append(NodeExpr expr)
+        public void Append(NodeExpr expr)
         {
             if (this.expr == null)
             {
@@ -56,7 +56,7 @@ namespace Interpreter
             }
             else
             {
-                this.expr.append(expr);
+                this.expr.Append(expr);
             }
         }
 
@@ -66,17 +66,17 @@ namespace Interpreter
          * 
          * @return void
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
             if (expr == null)
             {
-                return term.eval(env);
+                return term.Eval(env);
             }
             else
             {
-                double exprEval = expr.eval(env);
-                double termEval = term.eval(env);
-                return addop.op(exprEval, termEval);
+                double exprEval = expr.Eval(env);
+                double termEval = term.Eval(env);
+                return addop.Op(exprEval, termEval);
             }
         }
 

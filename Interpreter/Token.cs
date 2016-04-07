@@ -41,17 +41,17 @@ namespace Interpreter
         /**
          * @return the type of token
          */
-        public String tok() { return token; }
+        public String Tok() { return token; }
 
         /**
          * @return the lexeme (value) of this Token object
          */
-        public String lex() { return lexeme; }
+        public String Lex() { return lexeme; }
 
         /**
          * @return true if the token types are equal
          */
-        public bool equals(Token t)
+        public bool Equals(Token t)
         {
             return this.token == t.token;
         }
@@ -59,9 +59,9 @@ namespace Interpreter
         /**
          * @return a String representation of this token.
          */
-        public String toString()
+        public String ToString()
         {
-            return "<" + tok() + ", " + lex() + ">";
+            return "<" + Tok() + ", " + Lex() + ">";
         }
 
     }

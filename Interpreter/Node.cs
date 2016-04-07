@@ -14,7 +14,8 @@ namespace Interpreter
      * 
      * @author Jason Allen
      */
-    public abstract class Node {
+    public abstract class Node
+    {
 
         protected int pos = 0;
 
@@ -28,7 +29,7 @@ namespace Interpreter
          * eval() method, but instead be using the eval() methods in inheriting
          * classes
          */
-        public virtual double eval(EvalEnvironment env)
+        public virtual double Eval(EvalEnvironment env)
         {
             throw new Exception ("At position: " + pos + ", cannot eval() node!");
         }

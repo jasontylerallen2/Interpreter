@@ -33,9 +33,9 @@ namespace Interpreter
          *
          * @return void
          */
-        private void match(String s)
+        private void Match(String s)
         {
-            scanner.match(new Token(s));
+            scanner.Match(new Token(s));
         }
 
         /**
@@ -44,9 +44,9 @@ namespace Interpreter
          *
          * @return the current Token
          */
-        private Token curr()
+        private Token Curr()
         {
-            return scanner.curr();
+            return scanner.Curr();
         }
 
         /**
@@ -55,9 +55,9 @@ namespace Interpreter
          *
          * @return the current position in the scanner
          */
-        private int pos()
+        private int Pos()
         {
-            return scanner.pos();
+            return scanner.Pos();
         }
 
         /**
@@ -66,17 +66,17 @@ namespace Interpreter
          *
          * @return the parsed NodeMulop
          */
-        private NodeMulop parseMulop()
+        private NodeMulop ParseMulop()
         {
-            if (curr().equals(new Token("*")))
+            if (Curr().Equals(new Token("*")))
             {
-                match("*");
-                return new NodeMulop(pos(), "*");
+                Match("*");
+                return new NodeMulop(Pos(), "*");
             }
-            if (curr().equals(new Token("/")))
+            if (Curr().Equals(new Token("/")))
             {
-                match("/");
-                return new NodeMulop(pos(), "/");
+                Match("/");
+                return new NodeMulop(Pos(), "/");
             }
             return null;
         }
@@ -87,17 +87,17 @@ namespace Interpreter
          *
          * @return the parsed NodeAddop
          */
-        private NodeAddop parseAddop()
+        private NodeAddop ParseAddop()
         {
-            if (curr().equals(new Token("+")))
+            if (Curr().Equals(new Token("+")))
             {
-                match("+");
-                return new NodeAddop(pos(), "+");
+                Match("+");
+                return new NodeAddop(Pos(), "+");
             }
-            if (curr().equals(new Token("-")))
+            if (Curr().Equals(new Token("-")))
             {
-                match("-");
-                return new NodeAddop(pos(), "-");
+                Match("-");
+                return new NodeAddop(Pos(), "-");
             }
             return null;
         }
@@ -108,24 +108,24 @@ namespace Interpreter
          *
          * @return the parsed NodeFact
          */
-        private NodeFact parseFact()
+        private NodeFact ParseFact()
         {
-            if (curr().equals(new Token("(")))
+            if (Curr().Equals(new Token("(")))
             {
-                match("(");
-                NodeExpr expr = parseExpr();
-                match(")");
+                Match("(");
+                NodeExpr expr = ParseExpr();
+                Match(")");
                 return new NodeFactExpr(expr);
             }
-            if (curr().equals(new Token("id")))
+            if (Curr().Equals(new Token("id")))
             {
-                Token id = curr();
-                match("id");
-                return new NodeFactId(pos(), id.lex());
+                Token id = Curr();
+                Match("id");
+                return new NodeFactId(Pos(), id.Lex());
             }
-            Token dbl = curr();
-            match("dbl");
-            return new NodeFactDbl(dbl.lex());
+            Token dbl = Curr();
+            Match("dbl");
+            return new NodeFactDbl(dbl.Lex());
         }
 
         /**
@@ -136,15 +136,15 @@ namespace Interpreter
          *
          * @return the parsed NodeNegFact
          */
-        private NodeNegFact parseNegFact()
+        private NodeNegFact ParseNegFact()
         {
             Boolean isNegative = false;
-            if (curr().equals(new Token("-")))
+            if (Curr().Equals(new Token("-")))
             {
-                match("-");
+                Match("-");
                 isNegative = true;
             }
-            NodeFact fact = parseFact();
+            NodeFact fact = ParseFact();
             NodeNegFact negfact = new NodeNegFact(isNegative, fact);
             return negfact;
         }
@@ -156,14 +156,14 @@ namespace Interpreter
          *
          * @return the parsed NodeTerm
          */
-        private NodeTerm parseTerm()
+        private NodeTerm ParseTerm()
         {
-            NodeNegFact negfact = parseNegFact();
-            NodeMulop mulop = parseMulop();
+            NodeNegFact negfact = ParseNegFact();
+            NodeMulop mulop = ParseMulop();
             if (mulop == null)
                 return new NodeTerm(negfact, null, null);
-            NodeTerm term = parseTerm();
-            term.append(new NodeTerm(negfact, mulop, null));
+            NodeTerm term = ParseTerm();
+            term.Append(new NodeTerm(negfact, mulop, null));
             return term;
         }
 
@@ -173,14 +173,14 @@ namespace Interpreter
          *
          * @return the parsed NodeExpr
          */
-        private NodeExpr parseExpr()
+        private NodeExpr ParseExpr()
         {
-            NodeTerm term = parseTerm();
-            NodeAddop addop = parseAddop();
+            NodeTerm term = ParseTerm();
+            NodeAddop addop = ParseAddop();
             if (addop == null)
                 return new NodeExpr(term, null, null);
-            NodeExpr expr = parseExpr();
-            expr.append(new NodeExpr(term, addop, null));
+            NodeExpr expr = ParseExpr();
+            expr.Append(new NodeExpr(term, addop, null));
             return expr;
         }
 
@@ -191,13 +191,13 @@ namespace Interpreter
          *
          * @return the parsed NodeAssn
          */
-        private NodeAssn parseAssn()
+        private NodeAssn ParseAssn()
         {
-            Token id = curr();
-            match("id");
-            match("=");
-            NodeExpr expr = parseExpr();
-            NodeAssn assn = new NodeAssn(id.lex(), expr);
+            Token id = Curr();
+            Match("id");
+            Match("=");
+            NodeExpr expr = ParseExpr();
+            NodeAssn assn = new NodeAssn(id.Lex(), expr);
             return assn;
         }
 
@@ -206,37 +206,37 @@ namespace Interpreter
          * 
          * @return the parsed NodeRelOp
          */
-        private NodeRelOp parseRelOp()
+        private NodeRelOp ParseRelOp()
         {
-            if (curr().equals(new Token("<")))
+            if (Curr().Equals(new Token("<")))
             {
-                match("<");
-                return new NodeRelOp(pos(), "<");
+                Match("<");
+                return new NodeRelOp(Pos(), "<");
             }
-            else if (curr().equals(new Token("<=")))
+            else if (Curr().Equals(new Token("<=")))
             {
-                match("<=");
-                return new NodeRelOp(pos(), "<=");
+                Match("<=");
+                return new NodeRelOp(Pos(), "<=");
             }
-            else if (curr().equals(new Token(">")))
+            else if (Curr().Equals(new Token(">")))
             {
-                match(">");
-                return new NodeRelOp(pos(), ">");
+                Match(">");
+                return new NodeRelOp(Pos(), ">");
             }
-            else if (curr().equals(new Token(">=")))
+            else if (Curr().Equals(new Token(">=")))
             {
-                match(">=");
-                return new NodeRelOp(pos(), ">=");
+                Match(">=");
+                return new NodeRelOp(Pos(), ">=");
             }
-            else if (curr().equals(new Token("<>")))
+            else if (Curr().Equals(new Token("<>")))
             {
-                match("<>");
-                return new NodeRelOp(pos(), "<>");
+                Match("<>");
+                return new NodeRelOp(Pos(), "<>");
             }
-            else if (curr().equals(new Token("==")))
+            else if (Curr().Equals(new Token("==")))
             {
-                match("==");
-                return new NodeRelOp(pos(), "==");
+                Match("==");
+                return new NodeRelOp(Pos(), "==");
             }
             return null;
         }
@@ -246,11 +246,11 @@ namespace Interpreter
          *
          * @return the parsed NodeBoolExpr
          */
-        private NodeBoolExpr parseBoolExpr()
+        private NodeBoolExpr ParseBoolExpr()
         {
-            NodeExpr expr1 = parseExpr();
-            NodeRelOp relop = parseRelOp();
-            NodeExpr expr2 = parseExpr();
+            NodeExpr expr1 = ParseExpr();
+            NodeRelOp relop = ParseRelOp();
+            NodeExpr expr2 = ParseExpr();
             return new NodeBoolExpr(expr1, relop, expr2);
         }
 
@@ -261,68 +261,68 @@ namespace Interpreter
          *
          * @return the parsed NodeStmt
          */
-        private NodeStmt parseStmt()
+        private NodeStmt ParseStmt()
         {
-            if (curr().equals(new Token("wr")))
+            if (Curr().Equals(new Token("wr")))
             {
                 /* Case 2 */
-                Token keyword = curr();
-                match("wr");
-                NodeExpr expr = parseExpr();
+                Token keyword = Curr();
+                Match("wr");
+                NodeExpr expr = ParseExpr();
                 return new NodeStmt(null, keyword, null,
-                                    expr, null, null, null, null, pos());
+                                    expr, null, null, null, null, Pos());
             }
-            else if (curr().equals(new Token("if")))
+            else if (Curr().Equals(new Token("if")))
             {
                 /* Case 3-4 */
-                Token keyword = curr();
-                match("if");
-                NodeBoolExpr boolExpr = parseBoolExpr();
-                match("then");
-                NodeStmt stmt1 = parseStmt();
-                if (curr().equals(new Token("else")))
+                Token keyword = Curr();
+                Match("if");
+                NodeBoolExpr boolExpr = ParseBoolExpr();
+                Match("then");
+                NodeStmt stmt1 = ParseStmt();
+                if (Curr().Equals(new Token("else")))
                 {
                     /* Case 4 */
-                    match("else");
-                    NodeStmt stmt2 = parseStmt();
+                    Match("else");
+                    NodeStmt stmt2 = ParseStmt();
                     return new NodeStmt(null, keyword, null, null,
-                                        boolExpr, stmt1, stmt2, null, pos());
+                                        boolExpr, stmt1, stmt2, null, Pos());
                 }
                 else
                 {
                     /* Case 5 */
                     return new NodeStmt(null, keyword, null, null,
-                                        boolExpr, stmt1, null, null, pos());
+                                        boolExpr, stmt1, null, null, Pos());
                 }
             }
-            else if (curr().equals(new Token("while")))
+            else if (Curr().Equals(new Token("while")))
             {
                 /* Case 5 */
-                Token keyword = curr();
-                match("while");
-                NodeBoolExpr boolExpr = parseBoolExpr();
-                match("do");
-                NodeStmt stmt1 = parseStmt();
+                Token keyword = Curr();
+                Match("while");
+                NodeBoolExpr boolExpr = ParseBoolExpr();
+                Match("do");
+                NodeStmt stmt1 = ParseStmt();
                 return new NodeStmt(null, keyword, null, null,
-                                    boolExpr, stmt1, null, null, pos());
+                                    boolExpr, stmt1, null, null, Pos());
             }
-            else if (curr().equals(new Token("begin")))
+            else if (Curr().Equals(new Token("begin")))
             {
                 /* Case 6 */
-                Token keyword = curr();
-                match("begin");
-                NodeBlock block = parseBlock();
-                match("end");
+                Token keyword = Curr();
+                Match("begin");
+                NodeBlock block = ParseBlock();
+                Match("end");
                 return new NodeStmt(null, keyword, null, null,
                                     null, null, null,
-                                    block, pos());
+                                    block, Pos());
             }
             else
             {
                 /* Case 1 */
-                NodeAssn assn = parseAssn();
+                NodeAssn assn = ParseAssn();
                 NodeStmt stmt = new NodeStmt(assn, null, null, null,
-                                             null, null, null, null, pos());
+                                             null, null, null, null, Pos());
                 return stmt;
             }
         }
@@ -332,15 +332,15 @@ namespace Interpreter
          *
          * @return the parsed NodeBlock
          */
-        private NodeBlock parseBlock()
+        private NodeBlock ParseBlock()
         {
-            NodeStmt stmt = parseStmt();
+            NodeStmt stmt = ParseStmt();
             NodeBlock block = new NodeBlock(stmt, null);
-            if (curr().equals(new Token(";")))
+            if (Curr().Equals(new Token(";")))
             {
-                match(";");
-                NodeBlock nextBlock = parseBlock();
-                block.append(nextBlock);
+                Match(";");
+                NodeBlock nextBlock = ParseBlock();
+                block.Append(nextBlock);
                 return block;
             }
             return block;
@@ -351,9 +351,9 @@ namespace Interpreter
          *
          * @return the parsed NodeProg
          */
-        private NodeProg parseProg()
+        private NodeProg ParseProg()
         {
-            NodeBlock block = parseBlock();
+            NodeBlock block = ParseBlock();
             return new NodeProg(block);
         }
 
@@ -364,11 +364,11 @@ namespace Interpreter
          *
          * @return the first node in our parse tree
          */
-        public Node parse(String program)
+        public Node Parse(String program)
         {
             scanner = new Scanner(program);
-            scanner.next();
-            return parseProg();
+            scanner.Next();
+            return ParseProg();
         }
     }
 

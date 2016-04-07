@@ -35,7 +35,7 @@ namespace Interpreter
          * @return a double from the String used to create
          * the node
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
             return Double.Parse(num);
         }

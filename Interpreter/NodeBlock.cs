@@ -41,11 +41,11 @@ namespace Interpreter
          * 
          * @return void
          */
-        public void append(NodeBlock nextBlock)
+        public void Append(NodeBlock nextBlock)
         {
             if (this.nextBlock != null)
             {
-                this.nextBlock.append(nextBlock);
+                this.nextBlock.Append(nextBlock);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace Interpreter
         /**
          * @return the stmt contained within this block
          */
-        public NodeStmt getStmt()
+        public NodeStmt GetStmt()
         {
             return stmt;
         }
@@ -64,7 +64,7 @@ namespace Interpreter
         /**
          * @return the NextBlock, to allow recursive block parsing
          */
-        public NodeBlock getNextBlock()
+        public NodeBlock GetNextBlock()
         {
             return nextBlock;
         }
@@ -76,12 +76,12 @@ namespace Interpreter
          * @return a double resulting from the expression in the assignment
          * statement
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            double d = stmt.eval(env);
+            double d = stmt.Eval(env);
             if (nextBlock != null)
             {
-                return nextBlock.eval(env);
+                return nextBlock.Eval(env);
             }
             return d;
         }

@@ -62,57 +62,57 @@ namespace Interpreter
          * lumps statements together into a more standard programming "block" - i.e. statements
          * combined between curly braces in C based languages.
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
             if ( this.keyword != null )
             {
-                if ( this.keyword.tok().Equals("wr") )
+                if ( this.keyword.Tok().Equals("wr") )
                 {
-                    double d = this.expr.eval(env);
-                    env.addOutput(d);
+                    double d = this.expr.Eval(env);
+                    env.AddOutput(d);
                     return d;
                 }
-                else if ( this.keyword.tok().Equals("if") )
+                else if ( this.keyword.Tok().Equals("if") )
                 {
                     /* So, this is only used if it's the last value in a program. And, if Joe ends his program with
                      * an if statement, what do we really want to return? It's confusing. Don't do that. */
-                    if ( boolExpr.eval(env) == 1.0 )
+                    if ( boolExpr.Eval(env) == 1.0 )
                     {
-                        stmt1.eval(env);
+                        stmt1.Eval(env);
                     }
                     else
                     {
                         if ( stmt2 != null )
                         {
-                            stmt2.eval(env);
+                            stmt2.Eval(env);
                         }
                     }
                     return 0.0;
                 }
-                else if ( this.keyword.tok().Equals("while") )
+                else if ( this.keyword.Tok().Equals("while") )
                 {
                     /* Again, don't end a program with a 'while' and expect a return value. */
-                    while ( boolExpr.eval(env) == 1.0 )
+                    while ( boolExpr.Eval(env) == 1.0 )
                     {
-                        stmt1.eval(env);
+                        stmt1.Eval(env);
                     }
                     return 0.0;
                 }
-                else if ( this.keyword.tok().Equals("begin") )
+                else if ( this.keyword.Tok().Equals("begin") )
                 {
-                    double ret = this.block.getStmt().eval( env );
-                    if (this.block.getNextBlock() != null)
-                        ret = this.block.getNextBlock().eval(env);
+                    double ret = this.block.GetStmt().Eval( env );
+                    if (this.block.GetNextBlock() != null)
+                        ret = this.block.GetNextBlock().Eval(env);
                     return ret;
                 }
                 else
                 {
-                    throw new Exception("At position: " + this.pos + " What's with the keyword? (" + this.keyword.tok() + ")");
+                    throw new Exception("At position: " + this.pos + " What's with the keyword? (" + this.keyword.Tok() + ")");
                 }
             }
             else
             {
-                return assn.eval(env);
+                return assn.Eval(env);
             }
         }
 

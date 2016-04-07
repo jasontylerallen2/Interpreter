@@ -34,9 +34,9 @@ namespace Interpreter
          * 
          * @return a double resulting from evaluation of the overall block
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            double ret = block.eval(env);
+            double ret = block.Eval(env);
             return ret;
         }
 

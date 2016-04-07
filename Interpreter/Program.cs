@@ -65,9 +65,9 @@ namespace Interpreter
                 Console.WriteLine("TESTING DIRECTORY " + subDirectory);
 
                 EvalEnvironment env = new EvalEnvironment();
-                Node n = parser.parse(prg.Trim());
-                n.eval(env);
-                List<Double> output = env.getOutput();
+                Node n = parser.Parse(prg.Trim());
+                n.Eval(env);
+                List<Double> output = env.GetOutput();
                 String outputString = "";
 
                 foreach(Double d in output)

@@ -38,9 +38,9 @@ namespace Interpreter
          * @return a double resulting from the expression in the assignment
          * statement
          */
-        public override double eval(EvalEnvironment env)
+        public override double Eval(EvalEnvironment env)
         {
-            return env.put(id, expr.eval(env));
+            return env.Put(id, expr.Eval(env));
         }
 
     }
