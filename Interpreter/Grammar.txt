@@ -7,7 +7,6 @@ stmt     : assn
          | 'if' boolexpr 'then' stmt 'else' stmt
          | 'while' boolexpr 'do' stmt
          | 'begin' block 'end'
-stmt     : assn ';'
 assn     : id '=' expr
 expr     : term addop expr
          | term
